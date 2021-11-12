@@ -1,0 +1,57 @@
+###############################################################################
+#                          Generated on config.io                          #
+###############################################################################
+version: "3.1"
+services:
+
+    mariadb:
+        container_name: ndocker-lnmp-db
+        image: mariadb:10.6
+        working_dir: /application
+        volumes:
+            - ./database/mariadb:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=lalala
+            - MYSQL_DATABASE=dbname
+            - MYSQL_USER=dbuname
+            - MYSQL_PASSWORD=dbpwd
+            - TZ=Asia/Taipei
+        ports:
+        - "3306:3306"
+
+    webserver:
+        container_name: ndocker-lnmp-nginx
+        image: nginx:alpine
+        working_dir: /application
+        volumes:
+            - .:/application
+            - ./config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+            - ./config/nginx/ssl-nginx.conf:/etc/nginx/conf.d/ssl-nginx.conf.conf
+        ports:
+            - "31000:80"
+            - "4433:443"
+
+    php-fpm:
+        container_name: ndocker-lnmp-php
+        build: config/php-fpm
+        working_dir: /application
+        volumes:
+            - .:/application
+            - ./config/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+    
+    nvm:
+        container_name: ndocker-nvm
+        build: config/nvm
+        tty: true
+        working_dir: /application
+        volumes:
+            - ./frontend:/application
+        ports:
+            - "9027:80"
+
+volumes:
+    run_vol:
+        driver_opts:
+            type: tmpfs
+            device: tmpfs            
+
