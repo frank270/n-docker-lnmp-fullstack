@@ -18,7 +18,21 @@ $containerBuilder = new ContainerBuilder();
 if (false) { // Should be set to true in production
 	$containerBuilder->enableCompilation(__DIR__ . '/../var/cache');
 }
+//project setting part
+$server_ip = $_SERVER['SERVER_ADDR'];
+$server_name = $_SERVER['SERVER_NAME'];
 
+switch($server_name){
+    case 'ndev.local':
+    default:
+        define('ENV', "test");
+        //define('ENVURL', "https://".$server_name.":4433/");
+        //header("location: https://ndev.local:4433");
+        break;
+}
+//DB setting
+require __DIR__ . '/../app/database.php';
+//end -- project setting part
 // Set up settings
 $settings = require __DIR__ . '/../app/settings.php';
 $settings($containerBuilder);

@@ -1,0 +1,6 @@
+./src/frontend/kol/*
+./src/frontend/nextjs-learn/*
+*.zip
+*.psd
+*.ai
+*.lock
