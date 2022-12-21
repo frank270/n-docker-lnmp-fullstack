@@ -1,0 +1,25 @@
+openapi: '3.0.2'
+info:
+  title: API Title
+  version: '1.0'
+servers:
+  - url: https://{serverurl}:{port}/api/{apiver}
+    variables:
+      serverurl:
+        enum:
+          - "ndev.local"
+          - "kolbooster.sat.cool"
+        default: "ndev.local"
+      port:
+        enum:
+          - "4433"
+          - "443"
+        default: "4433"
+      apiver:
+        default: v1
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: OK
