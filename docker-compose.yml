@@ -10,6 +10,7 @@ services:
         working_dir: /application
         volumes:
             - ./database/mariadb:/var/lib/mysql
+            - ./docs/sql:/docker-entrypoint-initdb.d
         environment:
             - MYSQL_ROOT_PASSWORD=lalala
             - MYSQL_DATABASE=dbname

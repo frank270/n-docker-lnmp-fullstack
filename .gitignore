@@ -1,0 +1,7 @@
+3rd-party/ndba
+database/mariadb/*
+logs/*
+*.zip
+*.psd
+*.ai
+.DS_Store
