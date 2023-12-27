@@ -5,3 +5,8 @@ logs/*
 *.psd
 *.ai
 .DS_Store
+*.pem
+src/canjune/*
+src/laravel-lab/*
+src/backend/python/*
+redis/*
